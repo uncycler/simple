@@ -9,7 +9,5 @@ copy_static_files() {
 	cp /tmp/src/*.html ./
 }
 
-ls -l /tmp/src/*
-ls -l
 copy_static_files
 copy_server_configs
