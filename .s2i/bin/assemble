@@ -6,6 +6,7 @@
 # For more information refer to the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
+echo "caca"
 
 if [ "$1" = "-h" ]; then
 	# If the 's2i-nginx' assemble script is executed with '-h' flag,
@@ -28,12 +29,12 @@ copy_static_files() {
 }
 
 copy_default_config() {
-    cp /opt/app-root/etc/default.conf /opt/app-root/etc/nginx.conf.d/default.conf
+    cp /opt/app-root/etc/default.conf /etc/nginx.conf.d/default.conf
 }
 
 copy_server_configs() {
-    echo "---> Copying nginx config"
-    rm /opt/app-root/etc/nginx.conf.d/default.conf
+    echo "---> Copying nginx config to location"
+    #rm /opt/app-root/etc/nginx.conf.d/default.conf
     if [ ! -d /tmp/src/"${NGINX_STATIC_DIR}" ]; then
         copy_default_config
     elif [ -n "${NGINX_SERVER_CONF_FILE}" -a -f /tmp/src/"${NGINX_SERVER_CONF_FILE}" ]; then
@@ -71,6 +72,7 @@ cleanup() {
     rm -f /opt/app-root/run/nginx.pid $NGINX_VAR_DIR/log/nginx/error.log
 }
 
+echo "caca"
 copy_static_files
 copy_server_configs
 copy_aux_dir
